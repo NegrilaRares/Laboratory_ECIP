@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar  2 18:14:52 2026
+
+@author: rares
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+T = 50
+x0 = 0
+
+t = np.arange(T)
+x_true = x0 + t
+
+print("True System State Evolution:")
+
+for i in range(T):
+    print(f"t = {t[i]}, x(t) = {x_true[i]}")
+
+plt.figure()
+plt.plot(t, x_true)
+plt.title("True System State Evolution (No Noise)")
+plt.xlabel("Time step")
+plt.ylabel("True state")
+plt.show()
