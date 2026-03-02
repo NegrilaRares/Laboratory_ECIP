@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar  2 18:14:52 2026
+
+@author: rares
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+T = 50
+x0 = 0
+
+t = np.arange(T)
+x_true = x0 + t
+
+print("True System State Evolution:\n")
+
+for i in range(T):
+    print(f"t = {t[i]}, x(t) = {x_true[i]}")
+    
+mean = 0
+std_dev = 2
+
+noise = np.random.normal(mean, std_dev, T)
+y_obs = x_true + noise
+
+print("\nNoisy Observations:\n")
+for i in range(T):
+    print(f"t = {t[i]}, y(t) = {y_obs[i]:.3f}")
+
+plt.figure()
+plt.plot(t, x_true, label="True State", linewidth=2)
+plt.scatter(t, y_obs, label="Noisy Observations", color="red")
+plt.title("True State vs Noisy Observations")
+plt.xlabel("Time step")
+plt.ylabel("State value")
+plt.show()
