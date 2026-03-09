@@ -12,24 +12,35 @@ Created on Mon Mar  9 18:10:34 2026
 #           Show your result with a screenshot.
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 plt.close('all')
 
-r = 3.7
-x = 0.5        
-steps = 100    
+r_values = np.linspace(0, 4, 2000)
+x0 = 0.5
 
-population = [x]
+r_plot = []
+x_plot = []
 
-for i in range(steps):
-    x = r * x * (1 - x)
-    population.append(x)
+for r in r_values:
+    x = x0
 
-for i, p in enumerate(population):
-    print(f"Step {i}: population = {p:.5f}")
+    for i in range(200):
+        x = r * x * (1 - x)
 
-plt.plot(population)
-plt.xlabel("Time step")
+    for i in range(100):
+        x = r * x * (1 - x)
+        r_plot.append(r)
+        x_plot.append(x)
+
+print("Population growth becomes chaotic at approximately r ≈ 3.57")
+
+plt.figure(figsize=(10,6))
+plt.plot(r_plot, x_plot, 'k.', markersize=0.5)
+
+plt.xlabel("Growth factor r")
 plt.ylabel("Population")
-plt.title(f"Logistic Population Growth (r = {r})")
+plt.title("Logistic Map Chaos")
+plt.grid(True)
+
 plt.show()
